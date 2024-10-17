@@ -1,0 +1,7 @@
+username = 'jmt76'
+nickname = 'bogus'
+age = 1000
+bankBalance = 7143
+lotterYAmount = 5000000
+
+print("salutations", username, "your bank balance is now", bankBalance)
