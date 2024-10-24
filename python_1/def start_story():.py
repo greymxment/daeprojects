@@ -1,128 +1,50 @@
-name=input("hello user! what is your nickname?")
+def ask_question(question_text, correct_answer, points_for_correct, points_for_incorrect):
+    """Asks a question and returns the points earned."""
+    user_answer = input(question_text).strip()
+    if user_answer.lower() == correct_answer.lower():  # Case insensitive check
+        print(f"Correct! +{points_for_correct} pts")
+        return points_for_correct
+    else:
+        print(f"Wrong! -{points_for_incorrect} pts")
+        return -points_for_incorrect
 
-print("Hello,", name,", welcome to my quiz. you need 1500 points to win, each correct answer grants you 150 and every wrong answer takes away 50, some questions will grant you extra points (this is very unserious)")
+# Main quiz function
+def quiz_game():
+    user_nickname = input("Hello user! What is your nickname? ")
+    print(f"Hello, {user_nickname}, welcome to my quiz! You need 1500 points to win. "
+          "Each correct answer grants you 150 points, and every wrong answer deducts 50 points. "
+          "Bonus questions grant extra points but have greater penalties (this is very unserious).")
 
-# start of quiz
+    # Initialize total points variable
+    total_points = 0
 
-# Initialize points variable
-points = 0
+    # List of quiz questions with their answers and point values
+    quiz_questions = [
+        ("What is the square root of 25? ", '5', 150, 50),
+        ("Bonus question: What's 9 plus 10? ", '21', 250, 100),
+        ("Bonus question: Spell red. (hint: beetlejuice) ", 'lster', 250, 75),
+        ("Who you gonna call? ", 'ghostbusters', 200, 100),
+        ("What is 8 times 8? ", '64', 150, 50),
+        ("I am _____? ", 'steve', 250, 75),
+        ("What is the square root of 144? ", '12', 150, 50),
+        ("What is 9 x 9? ", '81', 150, 50),
+        ("What was the former capital of Japan? ", 'kyoto', 150, 50),
+        ("Does Kay have superpowers? ", 'yes', 150, 50),
+        ("Slang for 'Not genuine or true; false' ", 'bogus', 250, 75)
+    ]
 
-# Question 1
-print("What is the square root of 25?")
-answer = input("Write your answer: ")
-if answer == '5':
-    print("Correct! +150 pts")
-    points += 150  # Add points
-else: 
-    print("Wrong! -50 pts")
-    points -= 50  # Subtract points
+    # Loop through questions
+    for question in quiz_questions:
+        question_text, correct_answer, points_for_correct, points_for_incorrect = question
+        total_points += ask_question(question_text, correct_answer, points_for_correct, points_for_incorrect)
 
-# Question 2
-print("What's 9 plus 10?")
-answer = input("Write your answer: ")
-if answer == '21':
-    print("Correct! Bonus 100 +250 pts")
-    points += 250
-else: 
-    print("Wrong! -50 pts")
-    points -= 50
+    # Final score
+    print("Total points:", total_points)
 
-# Question 3
-print("Spell red. (hint: beetlejuice)")
-answer = input("Write your answer: ")
-if answer == 'lster' or 'LSTER':
-    print("Correct! Bonus 100 +250 pts")
-    points += 250
-else: 
-    print("Wrong! -50 pts")
-    points -= 50
+    if total_points >= 1500:
+        print("YOU WIN! You got more than or equal to 1500 pts. Thanks for playing!")
+    else:
+        print("Aw shucks, you got less than the required amount of points. Try again.")
 
-# Question 4
-print("Who you gonna call?")
-answer = input("Write your answer: ")
-if answer.lower() == 'ghostbusters' or 'Ghostbusters':  # Case insensitive
-    print("Correct! Bonus 50 +200 pts")
-    points += 200
-else: 
-    print("Wrong! -50 pts")
-    points -= 50
-
-# Question 5
-print("What is 8 times 8?")
-answer = input("Write your answer: ")
-if answer == '64':
-    print("Correct! +150 pts")
-    points += 150
-else: 
-    print("Wrong! -50 pts")
-    points -= 50
-
-# Question 6
-print("I am _____?")
-answer = input("Write your answer: ")
-if answer.lower() == 'steve' or 'Steve':  # Case insensitive
-    print("Correct! Bonus 100 +250 pts")
-    points += 250
-else: 
-    print("Wrong! -50 pts")
-    points -= 50
-
-# Question 7
-print("What is the square root of 144?")
-answer = input("Write your answer: ")
-if answer == '12':
-    print("Correct! +150 pts")
-    points += 150
-else: 
-    print("Wrong! -50 pts")
-    points -= 50
-
-print("9 x 9")
-answer = input("Write your answer: ")
-if answer == '81':
-    print("Correct! +150 pts")
-    points += 150
-else: 
-    print("Wrong! -50 pts")
-    points -= 50
-
-print("What was the former capitolo of Japan?")
-answer = input("Write your answer: ")
-if answer == 'kyoto' or 'Kyoto':
-    print("Correct! +150 pts")
-    points += 150
-else: 
-    print("Wrong! -50 pts")
-    points -= 50
-
-print("Does Kay have superpowers?")
-answer = input("Write your answer: ")
-if answer == 'true' or 'yes':
-    print("Correct! bonus 100 +250 pts")
-    points += 250
-else: 
-    print("Wrong! -50 pts")
-    points -= 50
-
-print("slang for 'Not genuine or true; false'")
-answer = input("Write your answer: ")
-if answer == 'bogus' or 'Bogus':
-    print("Correct! bonus 100 +250 pts")
-    points += 250
-else: 
-    print("Wrong! -50 pts")
-    points -= 50
-
-# Final score
-print("Total points:", points)
-''' 
-if points > 10:
-    print()
-else:
-    
-
-'''
-
-
-
-
+# Start the quiz game
+quiz_game()
