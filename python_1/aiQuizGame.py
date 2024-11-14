@@ -23,14 +23,14 @@ def quiz_game():
         ("What is the square root of 25? ", '5', 150, 50),
         ("Bonus question: What's 9 plus 10? ", '21', 250, 100),
         ("Bonus question: Spell red. (hint: beetlejuice) ", 'lster', 250, 75),
-        ("Who you gonna call? ", 'ghostbusters', 200, 100),
+        ("Who you gonna call? ", 'ghostbusters', 150, 50),
         ("What is 8 times 8? ", '64', 150, 50),
-        ("I am _____? ", 'steve', 250, 75),
+        ("Bonus question: I am _____? ", 'steve', 250, 75),
         ("What is the square root of 144? ", '12', 150, 50),
         ("What is 9 x 9? ", '81', 150, 50),
         ("What was the former capital of Japan? ", 'kyoto', 150, 50),
         ("Does Kay have superpowers? ", 'yes', 150, 50),
-        ("Slang for 'Not genuine or true; false' ", 'bogus', 250, 75)
+        ("Bonus Question: Slang for 'Not genuine or true; false' ", 'bogus', 250, 75)
     ]
 
     # Loop through questions
