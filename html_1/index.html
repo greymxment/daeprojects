@@ -3,172 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>whocaresaboutmitosis</title>
-    <style>
-        /* General Reset */
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f3f3f3;
-        }
-
-        /* Navigation Bar */
-        nav {
-            background-color: #333;
-            padding: 1em;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: white;
-        }
-
-        nav h1 {
-            margin: 0;
-            font-size: 1.5em;
-        }
-
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-
-        nav ul li {
-            margin-right: 20px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-        }
-
-        nav ul li a:hover {
-            text-decoration: underline;
-        }
-
-        /* Header Section */
-        header {
-            text-align: center;
-            padding: 3em 1em;
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-
-        header p {
-            font-size: 1.2em;
-            margin-top: 10px;
-        }
-
-        /* Main Content */
-        main {
-            max-width: 1200px;
-            margin: 2em auto;
-            padding: 1em;
-        }
-
-        .game-section {
-            margin-bottom: 2em;
-        }
-
-        .game-section h2 {
-            font-size: 2em;
-            margin-bottom: 0.5em;
-        }
-
-        .search-bar {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 1em;
-        }
-
-        .search-bar input {
-            flex: 1;
-            padding: 0.5em;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .search-bar button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 0.5em 1em;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .search-bar button:hover {
-            background-color: #45a049;
-        }
-
-        .game-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1em;
-        }
-
-        .game-card {
-            background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 1em;
-            text-align: center;
-            transition: transform 0.2s;
-        }
-
-        .game-card:hover {
-            transform: scale(1.05);
-        }
-
-        .game-card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 5px;
-        }
-
-        .game-card h3 {
-            font-size: 1.2em;
-            margin: 0.5em 0;
-        }
-
-        .game-card button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 0.5em 1em;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-
-        .game-card button:hover {
-            background-color: #45a049;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 1em 0;
-            margin-top: 2em;
-        }
-
-        footer a {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <title>Game Finder</title>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -191,7 +27,7 @@
     <main>
         <!-- Liked Games Section -->
         <section id="liked-games" class="game-section">
-            <h2>Input games you have enjoyed</h2>
+            <h2>Your Liked Games</h2>
             <div class="search-bar">
                 <input type="text" id="game-search" placeholder="Enter a game title">
                 <button onclick="searchGame()">Add Game</button>
@@ -203,16 +39,17 @@
 
         <!-- Suggested Games Section -->
         <section id="suggested-games" class="game-section">
-            <h2>Suggested Games</h2>
+            <h2>Editor's Pick
+            </h2>
             <div class="game-grid">
                 <div class="game-card">
-                    <img src="https://via.placeholder.com/200x150" alt="Game A">
-                    <h3>Suggested Game A</h3>
+                    <img src="oneshot.jpg" alt="OneShot">
+                    <h3>OneShot</h3>
                     <button>Details</button>
                 </div>
                 <div class="game-card">
-                    <img src="https://via.placeholder.com/200x150" alt="Game B">
-                    <h3>Suggested Game B</h3>
+                    <img src="re4.jpeg" alt="Game B">
+                    <h3>Resident Evil 4 Remake</h3>
                     <button>Details</button>
                 </div>
                 <!-- Add more suggested games here -->

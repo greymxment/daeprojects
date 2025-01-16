@@ -1,16 +1,168 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>
-            best website eevr
-        </title>
-    </head>
-    <body>
-        <h1>
-           gamef
-        </h2> 
-        <h1>
-            gamef
-        </h2>
-    </body>
-</html>
+/* General Reset */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #af4c89;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+nav h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Header Section */
+header {
+    text-align: center;
+    padding: 3em 1em;
+    background-color: #af4c89;
+    color: white;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+header p {
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+/* Main Content */
+main {
+    max-width: 1200px;
+    margin: 2em auto;
+    padding: 1em;
+}
+
+.game-section {
+    margin-bottom: 2em;
+}
+
+.game-section h2 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+    color: #af4c89;
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1em;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 0.5em;
+    border: 1px solid #af4c89;
+    border-radius: 5px;
+    background-color: #1e1e1e;
+    color: white;
+}
+
+.search-bar button {
+    background-color: #af4c89;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #993b74;
+}
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1em;
+}
+
+.game-card {
+    background-color: #1e1e1e;
+    border: 1px solid #af4c89;
+    border-radius: 5px;
+    padding: 1em;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.game-card:hover {
+    transform: scale(1.05);
+}
+
+.game-card img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.game-card h3 {
+    font-size: 1.2em;
+    margin: 0.5em 0;
+    color: #af4c89;
+}
+
+.game-card button {
+    background-color: #af4c89;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.game-card button:hover {
+    background-color: #993b74;
+}
+
+/* Footer */
+footer {
+    background-color: #1e1e1e;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+    margin-top: 2em;
+}
+
+footer a {
+    color: #af4c89;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
