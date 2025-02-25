@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Finder</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <h1>Game Finder</h1>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="prevGame.html">Liked Games</a></li>
+            <li><a href="#suggested-games">Suggested Games</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Discover Your Next Favorite Series</h1>
+        <p>Sourced on the inputted titles you love, we bring you new and intruiging recommendations.</p>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Liked Games Section -->
+        <section id="liked-games" class="game-section">
+            <h2>Your Liked Games</h2>
+            <div class="search-bar">
+                <input type="text" id="game-search" placeholder="Enter a game title">
+                <button onclick="searchGame()">Add Game</button>
+            </div>
+            <div class="game-grid" id="liked-games-list">
+                <!-- Dynamically added games will appear here -->
+            </div>
+        </section>
+
+        <!-- Suggested Games Section -->
+        <section id="suggested-games" class="game-section">
+            <h2>Editor's Pick
+            </h2>
+            <div class="game-grid">
+                <div class="game-card">
+                    <img src="oneshot.jpg" alt="OneShot">
+                    <h3>OneShot</h3>
+                    <button>Details</button>
+                </div>
+                <div class="game-card">
+                    <img src="re4.jpeg" alt="Game B">
+                    <h3>Resident Evil 4 Remake</h3>
+                    <button>Details</button>
+                </div>
+                <!-- Add more suggested games here -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Contact me at <a href="mailto:jmt7611@outlook.com">jmt7611@outlook.com</a></p>
+    </footer>
+
+
+<script src="script.js"></script>
+</body>
+</html>
