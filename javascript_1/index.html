@@ -1,68 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Finder</title>
-    <link rel="stylesheet" href="index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Finder</title>
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav>
-        <h1>Game Finder</h1>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="prevGame.html">Liked Games</a></li>
-            <li><a href="#suggested-games">Suggested Games</a></li>
-        </ul>
-    </nav>
+  <!-- Navigation Bar -->
+  <nav>
+    <h1>Game Finder</h1>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="prevGame.html">Liked Games</a></li>
+      <li><a href="#suggested-games">Suggested Games</a></li>
+    </ul>
+  </nav>
+  
+  <!-- Header Section -->
+  <header>
+    <h1>Discover Your Next Favorite Series</h1>
+    <p>Sourced on the inputted titles you love, we bring you new and intriguing recommendations.</p>
+  </header>
+  
+  <!-- Main Content -->
+  <main>
+    <!-- Liked Games Section -->
+    <section id="liked-games" class="game-section">
+      <h2>Your Liked Games</h2>
+      <div class="search-bar">
+        <input type="text" id="game-search" placeholder="Enter a game title">
+        <button onclick="searchGame()">Add Game</button>
+      </div>
+      
+      <!-- Error message display -->
+      <p id="error-message" class="error-message"></p>
+      
+      <!-- Game Card Count Display -->
+      <p id="game-card-count" style="font-size: small; color: gray;">Total Game Cards: 0</p>
+      
+      <div class="game-grid" id="liked-games-list">
+        <!-- Dynamically added games will appear here -->
+      </div>
+    </section>
+    
+    <!-- Suggested Games Section -->
+    <section id="suggested-games" class="game-section">
+      <h2>Editor's Pick</h2>
+      <div class="game-grid">
+        <div class="game-card">
+          <img src="oneshot.jpg" alt="OneShot" onerror="this.src='https://via.placeholder.com/200x150';">
+          <h3>OneShot by Futurecat</h3>
+          <button onclick="showGameDetails('OneShot')">Details</button>
+        </div>
+        <div class="game-card">
+          <img src="re4.jpeg" alt="Resident Evil 4 Remake" onerror="this.src='https://via.placeholder.com/200x150';">
+          <h3>Resident Evil 4 Remake by Capcom</h3>
+          <button onclick="showGameDetails('Resident Evil 4 Remake')">Details</button>
+        </div>
+        <!-- Add more suggested games here -->
+      </div>
+    </section>
+  </main>
+  
+  <!-- Footer -->
+  <footer>
+    <p>Contact me at <a href="mailto:jmt7611@outlook.com">jmt7611@outlook.com</a></p>
+  </footer>
+  
+  <script>
+    // List of games that can be added
+    const games = [
+      "Oneshot",
 
-    <!-- Header Section -->
-    <header>
-        <h1>Discover Your Next Favorite Series</h1>
-        <p>Sourced on the inputted titles you love, we bring you new and intruiging recommendations.</p>
-    </header>
+      "Resident Evil 2",
+      "Resident Evil 3",
+      "Resident Evil 4",
+      "Resident Evil 5",
+      "Resident Evil 6",
 
-    <!-- Main Content -->
-    <main>
-        <!-- Liked Games Section -->
-        <section id="liked-games" class="game-section">
-            <h2>Your Liked Games</h2>
-            <div class="search-bar">
-                <input type="text" id="game-search" placeholder="Enter a game title">
-                <button onclick="searchGame()">Add Game</button>
-            </div>
-            <div class="game-grid" id="liked-games-list">
-                <!-- Dynamically added games will appear here -->
-            </div>
-        </section>
+      "Resident Evil 8 Village",
+      "Resident Evil 8",
+      "Resident Evil Village",
 
-        <!-- Suggested Games Section -->
-        <section id="suggested-games" class="game-section">
-            <h2>Editor's Pick
-            </h2>
-            <div class="game-grid">
-                <div class="game-card">
-                    <img src="oneshot.jpg" alt="OneShot">
-                    <h3>OneShot</h3>
-                    <button>Details</button>
-                </div>
-                <div class="game-card">
-                    <img src="re4.jpeg" alt="Game B">
-                    <h3>Resident Evil 4 Remake</h3>
-                    <button>Details</button>
-                </div>
-                <!-- Add more suggested games here -->
-            </div>
-        </section>
-    </main>
+      "Resident Evil 7 Biohazard",
+      "Resident Evil 7",
+      "Resident Evil Biohazard", 
+      
+      "Omori",
+      "Roblox",
+      "Silent Hill",
+      "Beat Saber",
+      "Phasmophobia",
+      "Minecraft",
+      "ULTRAKILL",
 
-    <!-- Footer -->
-    <footer>
-        <p>Contact me at <a href="mailto:jmt7611@outlook.com">jmt7611@outlook.com</a></p>
-    </footer>
+      "Red Dead Redemption",
+      "Red Dead Redemption 2",
 
+      "The Last of Us",
+      "The Last of Us Part II",
 
-<script src="script.js"></script>
+      "Dead Space",
+
+      "Dying Light",
+      "Dying Light 2",
+
+      "Super Mario",
+
+      "Sonic Frontiers",
+      "Sonic Mania",
+
+      "Geometry Dash",
+      "Mouthwashing",
+      "Limbus Company",
+      "Lethal Company",
+      "Slime Rancher"
+
+    ];
+
+    // Function to search for and add games
+    function searchGame() {
+      const inputField = document.getElementById('game-search');
+      const input = inputField.value.trim().toLowerCase();
+      const errorMessage = document.getElementById('error-message');
+      
+      // Clear any previous error messages
+      errorMessage.textContent = '';
+      
+      if (input === "") {
+        errorMessage.textContent = "Please enter a game title";
+        return;
+      }
+      
+      // Check if the input matches a game in the list
+      const matchedGame = games.find(game => game.toLowerCase() === input);
+      
+      if (!matchedGame) {
+        // Show error message if no match found
+        errorMessage.textContent = "Type correct name of a game";
+        return;
+      }
+      
+      // Prevent duplicate entries
+      const existingGames = Array.from(document.querySelectorAll('.game-card h3'))
+        .map(el => el.textContent.trim().toLowerCase());
+        
+      if (existingGames.includes(matchedGame.toLowerCase())) {
+        errorMessage.textContent = "This game is already in your list";
+        inputField.value = ''; // Clear input after entering duplicate
+        return;
+      }
+      
+      // Create and add game card
+      const gameList = document.getElementById('liked-games-list');
+      const gameCard = document.createElement('div');
+      gameCard.className = 'game-card';
+      
+      // Use simple image naming without folder
+      let gameImage = '';
+      if (matchedGame === "resident evil 4") {
+        gameImage = "re4.jpeg";
+      } else {
+        // For other games, remove spaces
+        gameImage = matchedGame.replace(/\s+/g, '').toLowerCase() + ".jpg";
+      }
+      
+      gameCard.innerHTML = `
+        <img src="${gameImage}" alt="${matchedGame}" onerror="this.src='https://via.placeholder.com/200x150';">
+        <h3>${matchedGame}</h3>
+        <button onclick="removeGame(this)">Remove</button>
+      `;
+      
+      gameList.appendChild(gameCard);
+      
+      // Clear input field after adding
+      inputField.value = '';
+      
+      // Update game card count
+      updateGameCardCount();
+    }
+
+    // Function to remove a game card
+    function removeGame(button) {
+      const gameCard = button.closest('.game-card');
+      gameCard.remove();
+      updateGameCardCount();
+    }
+
+    // Function to update the game card count
+    function updateGameCardCount() {
+      const gameList = document.getElementById('liked-games-list');
+      const gameCardCount = gameList.children.length;
+      const countDisplay = document.getElementById('game-card-count');
+      countDisplay.textContent = `Total Game Cards: ${gameCardCount}`;
+    }
+
+    // Add event listener for Enter key
+    document.addEventListener('DOMContentLoaded', function() {
+      const inputField = document.getElementById('game-search');
+      inputField.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+          searchGame();
+        }
+      });
+    });
+
+    // Function to show game details (placeholder for now)
+    function showGameDetails(gameName) {
+      alert(`Details for ${gameName} will be shown here.`);
+    }
+  </script>
 </body>
 </html>
