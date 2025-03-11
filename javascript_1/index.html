@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Game Finder</title>
   <link rel="stylesheet" href="index.css">
+  <script src="script2.js"></script>
 </head>
 <body>
   <!-- Navigation Bar -->
@@ -51,11 +52,13 @@
         <div class="game-card">
           <img src="oneshot.jpg" alt="OneShot" onerror="this.src='https://via.placeholder.com/200x150';">
           <h3>OneShot by Futurecat</h3>
+          <p class="similarity-score"></p>
           <button onclick="showGameDetails('OneShot')">Details</button>
         </div>
         <div class="game-card">
           <img src="re4.jpeg" alt="Resident Evil 4 Remake" onerror="this.src='https://via.placeholder.com/200x150';">
           <h3>Resident Evil 4 Remake by Capcom</h3>
+          <p class="similarity-score"></p>
           <button onclick="showGameDetails('Resident Evil 4 Remake')">Details</button>
         </div>
         <!-- Add more suggested games here -->
@@ -68,148 +71,6 @@
     <p>Contact me at <a href="mailto:jmt7611@outlook.com">jmt7611@outlook.com</a></p>
   </footer>
   
-  <script>
-    // List of games that can be added
-    const games = [
-      "Oneshot",
-
-      "Resident Evil 2",
-      "Resident Evil 3",
-      "Resident Evil 4",
-      "Resident Evil 5",
-      "Resident Evil 6",
-
-      "Resident Evil 8 Village",
-      "Resident Evil 8",
-      "Resident Evil Village",
-
-      "Resident Evil 7 Biohazard",
-      "Resident Evil 7",
-      "Resident Evil Biohazard", 
-      
-      "Omori",
-      "Roblox",
-      "Silent Hill",
-      "Beat Saber",
-      "Phasmophobia",
-      "Minecraft",
-      "ULTRAKILL",
-
-      "Red Dead Redemption",
-      "Red Dead Redemption 2",
-
-      "The Last of Us",
-      "The Last of Us Part II",
-
-      "Dead Space",
-
-      "Dying Light",
-      "Dying Light 2",
-
-      "Super Mario",
-
-      "Sonic Frontiers",
-      "Sonic Mania",
-
-      "Geometry Dash",
-      "Mouthwashing",
-      "Limbus Company",
-      "Lethal Company",
-      "Slime Rancher"
-
-    ];
-
-    // Function to search for and add games
-    function searchGame() {
-      const inputField = document.getElementById('game-search');
-      const input = inputField.value.trim().toLowerCase();
-      const errorMessage = document.getElementById('error-message');
-      
-      // Clear any previous error messages
-      errorMessage.textContent = '';
-      
-      if (input === "") {
-        errorMessage.textContent = "Please enter a game title";
-        return;
-      }
-      
-      // Check if the input matches a game in the list
-      const matchedGame = games.find(game => game.toLowerCase() === input);
-      
-      if (!matchedGame) {
-        // Show error message if no match found
-        errorMessage.textContent = "Type correct name of a game";
-        return;
-      }
-      
-      // Prevent duplicate entries
-      const existingGames = Array.from(document.querySelectorAll('.game-card h3'))
-        .map(el => el.textContent.trim().toLowerCase());
-        
-      if (existingGames.includes(matchedGame.toLowerCase())) {
-        errorMessage.textContent = "This game is already in your list";
-        inputField.value = ''; // Clear input after entering duplicate
-        return;
-      }
-      
-      // Create and add game card
-      const gameList = document.getElementById('liked-games-list');
-      const gameCard = document.createElement('div');
-      gameCard.className = 'game-card';
-      
-      // Use simple image naming without folder
-      let gameImage = '';
-      if (matchedGame === "resident evil 4") {
-        gameImage = "re4.jpeg";
-      } else {
-        // For other games, remove spaces
-        gameImage = matchedGame.replace(/\s+/g, '').toLowerCase() + ".jpg";
-      }
-      
-      gameCard.innerHTML = `
-        <img src="${gameImage}" alt="${matchedGame}" onerror="this.src='https://via.placeholder.com/200x150';">
-        <h3>${matchedGame}</h3>
-        <button onclick="removeGame(this)">Remove</button>
-      `;
-      
-      gameList.appendChild(gameCard);
-      
-      // Clear input field after adding
-      inputField.value = '';
-      
-      // Update game card count
-      updateGameCardCount();
-    }
-
-    // Function to remove a game card
-    function removeGame(button) {
-      const gameCard = button.closest('.game-card');
-      gameCard.remove();
-      updateGameCardCount();
-    }
-
-    // Function to update the game card count
-    function updateGameCardCount() {
-      const gameList = document.getElementById('liked-games-list');
-      const gameCardCount = gameList.children.length;
-      const countDisplay = document.getElementById('game-card-count');
-      countDisplay.textContent = `Total Game Cards: ${gameCardCount}`;
-    }
-
-    // Add event listener for Enter key
-    document.addEventListener('DOMContentLoaded', function() {
-      const inputField = document.getElementById('game-search');
-      inputField.addEventListener('keypress', function(event) {
-        if (event.key === 'Enter') {
-          searchGame();
-        }
-      });
-    });
-
-    // Function to show game details (placeholder for now)
-    function showGameDetails(gameName) {
-      alert(`Details for ${gameName} will be shown here.`);
-    }
-  </script>
+ 
 </body>
 </html>
