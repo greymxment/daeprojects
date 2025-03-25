@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Finder</title>
+  <link rel="stylesheet" href="index.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="script2.js"></script>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav>
+    <h1>Game Finder</h1>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="prevGame.html">Liked Games</a></li>
+      <li><a href="#suggested-games">Suggested Games</a></li>
+    </ul>
+  </nav>
+  
+  <!-- Header Section -->
+  <header>
+    <h1>Discover Your Next Favorite Series</h1>
+    <p>Sourced on the inputted titles you love, we bring you new and intriguing recommendations.</p>
+  </header>
+  
+  <!-- Main Content -->
+  <main>
+    <!-- Liked Games Section -->
+    <section id="liked-games" class="game-section">
+      <h2>Your Liked Games</h2>
+      <div class="search-bar">
+        <input type="text" id="game-search" placeholder="Enter a game title">
+        <button onclick="searchGame()">Add Game</button>
+      </div>
+      
+      <!-- Error message display -->
+      <p id="error-message" class="error-message"></p>
+      
+      <!-- Game Card Count Display -->
+      <p id="game-card-count" style="font-size: small; color: gray;">Total Game Cards: 0</p>
+      
+      <div class="game-grid" id="liked-games-list">
+        <!-- Dynamically added games will appear here -->
+      </div>
+    </section>
+    
+    <!-- Suggested Games Section -->
+    <section id="suggested-games" class="game-section">
+      <h2>Editor's Pick</h2>
+      <div class="game-grid">
+        <div class="game-card">
+          <img src="oneshot.jpg" alt="OneShot" onerror="this.src='https://via.placeholder.com/200x150';">
+          <h3>OneShot by Futurecat</h3>
+          <p class="similarity-score"></p>
+          <button onclick="showGameDetails('OneShot')">Details</button>
+        </div>
+        <div class="game-card">
+          <img src="re4.jpeg" alt="Resident Evil 4 Remake" onerror="this.src='https://via.placeholder.com/200x150';">
+          <h3>Resident Evil 4 Remake by Capcom</h3>
+          <p class="similarity-score"></p>
+          <button onclick="showGameDetails('Resident Evil 4 Remake')">Details</button>
+        </div>
+        <!-- Add more suggested games here -->
+      </div>
+    </section>
+  </main>
+  
+  <!-- Footer -->
+  <footer>
+    <p>Contact me at <a href="mailto:jmt7611@outlook.com">jmt7611@outlook.com</a></p>
+  </footer>
+  
+ 
+</body>
+</html>
