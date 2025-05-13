@@ -10,18 +10,41 @@
 </head>
 <body>
   <!-- Navigation Bar -->
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyDS0Rh8ZiVOOhq-NotwqGP7LGtelGhgjZw",
+      authDomain: "nice-game-c43a8.firebaseapp.com",
+      projectId: "nice-game-c43a8",
+      storageBucket: "nice-game-c43a8.firebasestorage.app",
+      messagingSenderId: "723709421965",
+      appId: "1:723709421965:web:4aea2144ef8d1c9a2075c4",
+      measurementId: "G-CJKJYVR1KG"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
   <nav>
-    <h1>Game Finder</h1>
+    <h1>nice game.com</h1>
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="prevGame.html">Liked Games</a></li>
+      <li><a href="bootstrap.html">Liked Games</a></li>
       <li><a href="#suggested-games">Suggested Games</a></li>
     </ul>
   </nav>
   
   <!-- Header Section -->
   <header>
-    <h1>Discover Your Next Favorite Series</h1>
+    <h1>Discover Your Next Favorite Game</h1>
     <p>Sourced on the inputted titles you love, we bring you new and intriguing recommendations.</p>
   </header>
   

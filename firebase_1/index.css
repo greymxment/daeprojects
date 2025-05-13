@@ -19,6 +19,7 @@ nav {
 nav h1 {
     margin: 0;
     font-size: 1.5em;
+    color: #ffffff
 }
 
 nav ul {
@@ -26,6 +27,7 @@ nav ul {
     margin: 0;
     padding: 0;
     display: flex;
+    color: #ffffff
 }
 
 nav ul li {
@@ -166,3 +168,9 @@ footer a {
 footer a:hover {
     text-decoration: underline;
 }
+
+nav h1 a {
+    color: white;
+    text-decoration: none; /* Optional: removes underline */
+  }
+  
