@@ -1,78 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game Finder</title>
-  <link rel="stylesheet" href="index.css">
-  <script src="script2.js"></script>
-   <script type="module" src="main.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Welcome - nicegame.com</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 2rem;
+  }
+  #user-info {
+    margin-bottom: 20px;
+  }
+  button {
+    padding: 10px 20px;
+    border: none;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+</style>
 </head>
 <body>
-  <!-- Navigation Bar -->
-  <nav>
-    <h1><a href="index.html">nicegame.com</a></h1>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="/Users/student/Desktop/DAEprojects/bootstrap_1/bootstrap.html">BS Demo
-      </a></li>
-      <li><a href="#suggested-games">Suggested Games</a></li>
-      <li><a href="login.html">Login/Signup</a></li> 
-    </ul>
-  </nav>
-  
-  <!-- Header Section -->
-  <header>
-    <h1>Discover Your Next Favorite Series</h1>
-    <p>Sourced on the inputted titles you love, we bring you new and intriguing recommendations.</p>
-  </header>
-  <!-- Main Content -->
-  <main>
-    <!-- Liked Games Section -->
-    <section id="liked-games" class="game-section">
-      <h2>Your Liked Games</h2>
-      <div class="search-bar">
-        <input type="text" id="game-search" placeholder="Enter a game title">
-        <button onclick="searchGame()">Add Game</button>
-      </div>
-      
-      <!-- Error message display -->
-      <p id="error-message" class="error-message"></p>
-      
-      <!-- Game Card Count Display -->
-      <p id="game-card-count" style="font-size: small; color: gray;">Total Game Cards: 0</p>
-      
-      <div class="game-grid" id="liked-games-list">
-        <!-- Dynamically added games will appear here -->
-      </div>
-    </section>
-    
-    <!-- Suggested Games Section -->
-    <section id="suggested-games" class="game-section">
-      <h2>Editor's Pick</h2>
-      <div class="game-grid">
-        <div class="game-card">
-          <img src="oneshot.jpg" alt="OneShot" onerror="this.src='https://via.placeholder.com/200x150';">
-          <h3>OneShot by Futurecat</h3>
-          <p class="similarity-score"></p>
-          <button onclick="showGameDetails('OneShot')">Details</button>
-        </div>
-        <div class="game-card">
-          <img src="re4.jpeg" alt="Resident Evil 4 Remake" onerror="this.src='https://via.placeholder.com/200x150';">
-          <h3>Resident Evil 4 Remake by Capcom</h3>
-          <p class="similarity-score"></p>
-          <button onclick="showGameDetails('Resident Evil 4 Remake')">Details</button>
-        </div>
-        <!-- Add more suggested games here -->
-      </div>
-    </section>
-  </main>
-  
-  <!-- Footer -->
-  <footer>
-    <p>Contact me at <a href="mailto:jmt7611@outlook.com">jmt7611@outlook.com</a></p>
-  </footer>
-  
- 
+
+<h1>Welcome to nicegame.com</h1>
+<div id="user-info">
+  Logged in as: <span id="user-email"></span>
+</div>
+<button id="logout-button">Logout</button>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+  import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+  } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDQUREqsDC1fQXyoZi4tB9YEr2c0HjS93s",
+    authDomain: "game-catalog---nice-game-tm.firebaseapp.com",
+    databaseURL: "https://game-catalog---nice-game-tm-default-rtdb.firebaseio.com",
+    projectId: "game-catalog---nice-game-tm",
+    storageBucket: "game-catalog---nice-game-tm.firebasestorage.app",
+    messagingSenderId: "236266946428",
+    appId: "1:236266946428:web:3dc62d8c1d1d805643aef9",
+    measurementId: "G-85Y87EW5RW"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const userEmailSpan = document.getElementById("user-email");
+  const logoutButton = document.getElementById("logout-button");
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User logged in
+      userEmailSpan.textContent = user.email;
+    } else {
+      // No user logged in, redirect to login page
+      window.location.href = "login.html";
+    }
+  });
+
+  logoutButton.addEventListener("click", () => {
+    signOut(auth).then(() => {
+      window.location.href = "login.html";
+    });
+  });
+</script>
+
 </body>
 </html>
