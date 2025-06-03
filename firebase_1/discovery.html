@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Discovery - nicegame.com</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+  <!-- ======== Header / Navbar for Discovery ======== -->
+  <nav>
+    <!-- Logo always links back to discovery.html so we stay on the discovery page -->
+    <h1><a href="discovery.html">nicegame.com</a></h1>
+    <ul>
+      <!-- If someone is not logged in, they can still click “Login” to go to the login page -->
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+
+  <!-- ======== Discovery Section ======== -->
+  <div class="game-section">
+    <h2>All Games (Discovery)</h2>
+    <p id="game-card-count">Total Game Cards: 0</p>
+    <div id="discovery-games-list" class="game-grid"></div>
+  </div>
+
+  <!-- ======== Firestore‐only READ logic (no add/edit/delete here) ======== -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      onSnapshot,
+      query,
+      orderBy
+    } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+
+    // ——— Paste your exact firebaseConfig here (same as in index.html and login.html) ———
+    const firebaseConfig = {
+      apiKey: "AIzaSyDQUREqsDC1fQXyoZi4tB9YEr2c0HjS93s",
+      authDomain: "game-catalog---nice-game-tm.firebaseapp.com",
+      databaseURL: "https://game-catalog---nice-game-tm-default-rtdb.firebaseio.com",
+      projectId: "game-catalog---nice-game-tm",
+      storageBucket: "game-catalog---nice-game-tm.firebasestorage.app",
+      messagingSenderId: "236266946428",
+      appId: "1:236266946428:web:3dc62d8c1d1d805643aef9",
+      measurementId: "G-85Y87EW5RW"
+    };
+    // ====================================================================================
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // DOM references
+    const gamesListDiv = document.getElementById("discovery-games-list");
+    const countP = document.getElementById("game-card-count");
+
+    // Query all documents in "games", sorted by timestamp descending
+    const q = query(
+      collection(db, "games"),
+      orderBy("timestamp", "desc")
+    );
+
+    // Listen in real time and render them
+    onSnapshot(q, (snapshot) => {
+      // Clear out old cards
+      gamesListDiv.innerHTML = "";
+
+      snapshot.forEach((docSnap) => {
+        const data = docSnap.data();
+
+        // Build a .game-card exactly like index.html does, except no Edit/Delete buttons
+        const card = document.createElement("div");
+        card.classList.add("game-card");
+
+        // 1. Game cover image
+        const img = document.createElement("img");
+        img.src = data.imageUrl;
+        img.alt = data.name;
+        card.appendChild(img);
+
+        // 2. Game title
+        const titleEl = document.createElement("h3");
+        titleEl.textContent = data.name;
+        card.appendChild(titleEl);
+
+        // 3. Description
+        const descEl = document.createElement("p");
+        descEl.textContent = data.description;
+        card.appendChild(descEl);
+
+        // 4. Tags (if any)
+        if (Array.isArray(data.tags) && data.tags.length > 0) {
+          const tagsEl = document.createElement("p");
+          tagsEl.classList.add("tags");
+          tagsEl.textContent = "Tags: " + data.tags.join(", ");
+          card.appendChild(tagsEl);
+        }
+
+        // 5. “Posted by” line
+        const postedByEl = document.createElement("p");
+        postedByEl.style.fontSize = "0.85rem";
+        postedByEl.style.color = "#555";
+        postedByEl.textContent = `Posted by: ${data.userEmail}`;
+        card.appendChild(postedByEl);
+
+        // Append to the grid
+        gamesListDiv.appendChild(card);
+      });
+
+      // Update total count
+      countP.textContent = `Total Game Cards: ${snapshot.size}`;
+    });
+  </script>
+</body>
+</html>

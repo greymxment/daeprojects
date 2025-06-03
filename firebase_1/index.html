@@ -12,8 +12,26 @@
   <nav>
     <h1><a href="index.html">nicegame.com</a></h1>
     <ul>
+      <!-- ← New “Discovery” link for all users -->
+      <li><a href="discovery.html">Discovery</a></li>
+
+      <!-- ← Shows “Logged in as: [email]” -->
       <li><span id="user-email"></span></li>
-      <li><button id="logout-button" style="background-color: #5563d4; padding: 0.5rem 1rem;border-radius:6px; border:none; color:white; cursor:pointer;">Logout</button></li>
+
+      <!-- ← Logout button for signed‐in users -->
+      <li>
+        <button id="logout-button"
+                style="
+                  background-color: #5563d4;
+                  padding: 0.5rem 1rem;
+                  border-radius: 6px;
+                  border: none;
+                  color: white;
+                  cursor: pointer;
+                ">
+          Logout
+        </button>
+      </li>
     </ul>
   </nav>
 
@@ -40,7 +58,7 @@
       <p id="error-message" class="error-message"></p>
     </div>
 
-    <!-- ======== List of All Games ======== -->
+    <!-- ======== List of All Games (for this user & others) ======== -->
     <h2>All Games</h2>
     <p id="game-card-count">Total Game Cards: 0</p>
     <div id="liked-games-list" class="game-grid"></div>
@@ -55,7 +73,7 @@
       signOut
     } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
 
-    // ===== Paste the same firebaseConfig you used in login.html =====
+    // ——— Paste your exact firebaseConfig here (same as in login.html) ———
     const firebaseConfig = {
       apiKey: "AIzaSyDQUREqsDC1fQXyoZi4tB9YEr2c0HjS93s",
       authDomain: "game-catalog---nice-game-tm.firebaseapp.com",
@@ -66,7 +84,7 @@
       appId: "1:236266946428:web:3dc62d8c1d1d805643aef9",
       measurementId: "G-85Y87EW5RW"
     };
-    // ======================================================================
+    // =======================================================================
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
@@ -74,7 +92,7 @@
     const userEmailSpan = document.getElementById("user-email");
     const logoutButton = document.getElementById("logout-button");
 
-    // If user is not signed in, redirect back to login.html
+    // Redirect to login.html if not signed in; otherwise show their email
     onAuthStateChanged(auth, (user) => {
       if (user) {
         userEmailSpan.textContent = user.email;
@@ -83,7 +101,7 @@
       }
     });
 
-    // Logout logic
+    // Sign out and redirect back to login page
     logoutButton.addEventListener("click", () => {
       signOut(auth).then(() => {
         window.location.href = "login.html";
@@ -91,7 +109,7 @@
     });
   </script>
 
-  <!-- ======== Firestore CRUD logic ======== -->
+  <!-- ======== Firestore CRUD logic (unchanged) ======== -->
   <script type="module" src="script2.js"></script>
 </body>
 </html>
