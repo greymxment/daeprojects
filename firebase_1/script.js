@@ -1,3 +1,5 @@
+// script.js 
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-analytics.js";
@@ -20,9 +22,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-
-
-
 function searchGame() {
     const input = document.getElementById('game-search').value;
     if (input.trim() === '') return;
@@ -41,4 +40,4 @@ function searchGame() {
     document.getElementById('game-search').value = '';
 }
 
-console.log("gameList")
+console.log("gameList");

@@ -1,77 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Welcome - nicegame.com</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 2rem;
-  }
-  #user-info {
-    margin-bottom: 20px;
-  }
-  button {
-    padding: 10px 20px;
-    border: none;
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-    color: white;
-    font-weight: bold;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Welcome - nicegame.com</title>
+  <link rel="stylesheet" href="index.css" />
 </head>
 <body>
 
-<h1>Welcome to nicegame.com</h1>
-<div id="user-info">
-  Logged in as: <span id="user-email"></span>
-</div>
-<button id="logout-button">Logout</button>
+  <!-- ======== Header / Navbar ======== -->
+  <nav>
+    <h1><a href="index.html">nicegame.com</a></h1>
+    <ul>
+      <li><span id="user-email"></span></li>
+      <li><button id="logout-button" style="background-color: #5563d4; padding: 0.5rem 1rem;border-radius:6px; border:none; color:white; cursor:pointer;">Logout</button></li>
+    </ul>
+  </nav>
 
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
-  import {
-    getAuth,
-    onAuthStateChanged,
-    signOut
-  } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
+  <!-- ======== Add Game Section ======== -->
+  <div class="game-section">
+    <h2>Add a New Game</h2>
+    <div class="game-form">
+      <!-- Game Name -->
+      <input type="text" id="game-name" placeholder="Game Name (required)" />
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyDQUREqsDC1fQXyoZi4tB9YEr2c0HjS93s",
-    authDomain: "game-catalog---nice-game-tm.firebaseapp.com",
-    databaseURL: "https://game-catalog---nice-game-tm-default-rtdb.firebaseio.com",
-    projectId: "game-catalog---nice-game-tm",
-    storageBucket: "game-catalog---nice-game-tm.firebasestorage.app",
-    messagingSenderId: "236266946428",
-    appId: "1:236266946428:web:3dc62d8c1d1d805643aef9",
-    measurementId: "G-85Y87EW5RW"
-  };
+      <!-- Game Description: use a textarea for longer text -->
+      <textarea id="game-description" rows="4" placeholder="Description (required)"></textarea>
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
+      <!-- Image URL -->
+      <input type="text" id="game-image-url" placeholder="Image URL (required)" />
 
-  const userEmailSpan = document.getElementById("user-email");
-  const logoutButton = document.getElementById("logout-button");
+      <!-- Tags (comma-separated) -->
+      <input type="text" id="game-tags" placeholder="Tags (comma separated, optional)" />
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User logged in
-      userEmailSpan.textContent = user.email;
-    } else {
-      // No user logged in, redirect to login page
-      window.location.href = "login.html";
-    }
-  });
+      <!-- Add Game button -->
+      <button id="add-game-button">Add Game</button>
 
-  logoutButton.addEventListener("click", () => {
-    signOut(auth).then(() => {
-      window.location.href = "login.html";
+      <!-- Error message placeholder -->
+      <p id="error-message" class="error-message"></p>
+    </div>
+
+    <!-- ======== List of All Games ======== -->
+    <h2>All Games</h2>
+    <p id="game-card-count">Total Game Cards: 0</p>
+    <div id="liked-games-list" class="game-grid"></div>
+  </div>
+
+  <!-- ======== Firebase Auth + Logout Logic ======== -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
+
+    // ===== Paste the same firebaseConfig you used in login.html =====
+    const firebaseConfig = {
+      apiKey: "AIzaSyDQUREqsDC1fQXyoZi4tB9YEr2c0HjS93s",
+      authDomain: "game-catalog---nice-game-tm.firebaseapp.com",
+      databaseURL: "https://game-catalog---nice-game-tm-default-rtdb.firebaseio.com",
+      projectId: "game-catalog---nice-game-tm",
+      storageBucket: "game-catalog---nice-game-tm.firebasestorage.app",
+      messagingSenderId: "236266946428",
+      appId: "1:236266946428:web:3dc62d8c1d1d805643aef9",
+      measurementId: "G-85Y87EW5RW"
+    };
+    // ======================================================================
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const userEmailSpan = document.getElementById("user-email");
+    const logoutButton = document.getElementById("logout-button");
+
+    // If user is not signed in, redirect back to login.html
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        userEmailSpan.textContent = user.email;
+      } else {
+        window.location.href = "login.html";
+      }
     });
-  });
-</script>
 
+    // Logout logic
+    logoutButton.addEventListener("click", () => {
+      signOut(auth).then(() => {
+        window.location.href = "login.html";
+      });
+    });
+  </script>
+
+  <!-- ======== Firestore CRUD logic ======== -->
+  <script type="module" src="script2.js"></script>
 </body>
 </html>
